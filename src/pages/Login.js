@@ -16,19 +16,22 @@ class Login extends Component {
     this.addLogin = this.addLogin.bind(this);
   }
 
-  handleChange({ target: { value, name } }) {
-    this.setState({
+  async handleChange({ target: { value, name } }) {
+    await this.setState({
       [name]: value,
     });
 
     const { email, password } = this.state;
     const arrEmail = email.split('');
-    const numberOfPassword = 4;
-
+    const numberOfPassword = 5;
     if (arrEmail.includes('@') === true && arrEmail.includes('.') === true
-    && password.length > numberOfPassword) {
+    && password.length > numberOfPassword && arrEmail[arrEmail.length - 1] !== '.') {
       this.setState({
         disabled: false,
+      });
+    } else {
+      this.setState({
+        disabled: true,
       });
     }
   }
