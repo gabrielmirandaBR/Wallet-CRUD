@@ -38,6 +38,7 @@ class Login extends Component {
     const arrEmail = email.split('');
     const isValid = arrEmail.includes('@') && arrEmail.includes('.')
     && arrEmail[arrEmail.length - 1] !== '.';
+
     return isValid;
   }
 
@@ -47,6 +48,7 @@ class Login extends Component {
     if (password.length >= numberOfPassword) {
       return true;
     }
+
     return false;
   }
 
@@ -62,6 +64,7 @@ class Login extends Component {
 
   render() {
     const { email, password, disabled, redirect } = this.state;
+
     if (redirect) {
       return <Redirect to="/carteira" />;
     }
@@ -108,6 +111,7 @@ class Login extends Component {
     );
   }
 }
+
 const mapDispatchToProps = (dispatch) => ({
   getEmail: (payload) => dispatch(getEmail(payload)),
 });
