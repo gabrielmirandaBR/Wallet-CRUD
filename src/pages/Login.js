@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
+import getEmail from '../actions';
 
 class Login extends Component {
   constructor() {
@@ -14,37 +17,52 @@ class Login extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.addLogin = this.addLogin.bind(this);
+    this.verifyEmail = this.verifyEmail.bind(this);
+    this.verifyPassword = this.verifyPassword.bind(this);
   }
 
-  async handleChange({ target: { value, name } }) {
-    await this.setState({
+  handleChange({ target: { value, name } }) {
+    this.setState({
       [name]: value,
     });
 
-    const { email, password } = this.state;
-    const arrEmail = email.split('');
-    const numberOfPassword = 5;
-    if (arrEmail.includes('@') === true && arrEmail.includes('.') === true
-    && password.length > numberOfPassword && arrEmail[arrEmail.length - 1] !== '.') {
+    if (this.verifyEmail() && this.verifyPassword()) {
       this.setState({
         disabled: false,
-      });
-    } else {
-      this.setState({
-        disabled: true,
       });
     }
   }
 
+  verifyEmail() {
+    const { email } = this.state;
+    const arrEmail = email.split('');
+    const isValid = arrEmail.includes('@') && arrEmail.includes('.')
+    && arrEmail[arrEmail.length - 1] !== '.';
+    return isValid;
+  }
+
+  verifyPassword() {
+    const { password } = this.state;
+    const numberOfPassword = 5;
+    if (password.length >= numberOfPassword) {
+      return true;
+    }
+    return false;
+  }
+
   addLogin() {
+    const { email } = this.state;
     this.setState({
       redirect: true,
     });
+
+    const { getEmail: addEmail } = this.props;
+    addEmail(email);
   }
 
   render() {
     const { email, password, disabled, redirect } = this.state;
-    if (!disabled && redirect) {
+    if (redirect) {
       return <Redirect to="/carteira" />;
     }
 
@@ -79,7 +97,6 @@ class Login extends Component {
 
           <button
             type="button"
-            id="btn-enter"
             disabled={ disabled }
             onClick={ this.addLogin }
           >
@@ -91,5 +108,12 @@ class Login extends Component {
     );
   }
 }
+const mapDispatchToProps = (dispatch) => ({
+  getEmail: (payload) => dispatch(getEmail(payload)),
+});
 
-export default Login;
+Login.propTypes = {
+  getEmail: propTypes.func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(Login);
