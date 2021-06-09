@@ -4,13 +4,18 @@ import { connect } from 'react-redux';
 
 class Currency extends Component {
   render() {
-    const { currencies } = this.props;
+    const { currencies, value, handleChange } = this.props;
     const curriciesFiltered = currencies
       .filter((currency) => currency.codein !== 'BRLT');
     return (
       <label htmlFor="currency">
         Moeda:
-        <select id="currency">
+        <select
+          id="currency"
+          name="currency"
+          value={ value }
+          onChange={ handleChange }
+        >
           {
             curriciesFiltered.map((currency) => (
               <option

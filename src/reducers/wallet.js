@@ -2,13 +2,17 @@ import {
   REQUEST_API,
   REQUEST_CURRENCIES_SUCCESS,
   REQUEST_CURRENCIES_ERROR,
+  SAVE_DATA,
 } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
+  expenses: [],
   isLoading: false,
   error: null,
 };
+
+let countId = Number('-1');
 
 function walletReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -27,6 +31,13 @@ function walletReducer(state = INITIAL_STATE, action) {
     return {
       ...state,
       error: action.error,
+    };
+  case SAVE_DATA:
+    countId += 1;
+    return {
+      ...state,
+      expenses: [...state.expenses, { ...action.payload, id: countId }],
+
     };
 
   default:

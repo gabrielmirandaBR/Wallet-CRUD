@@ -2,6 +2,7 @@ export const GET_LOGIN = 'GET_LOGIN';
 export const REQUEST_API = 'REQUEST_API';
 export const REQUEST_CURRENCIES_SUCCESS = 'REQUEST_CURRENCIES_SUCCESS';
 export const REQUEST_CURRENCIES_ERROR = 'REQUEST_CURRENCIES_ERROR';
+export const SAVE_DATA = 'SAVE_DATA';
 // Action Login
 
 export function getEmail(email) {
@@ -13,7 +14,20 @@ export function getEmail(email) {
   };
 }
 
-// Action Wallet
+// Actions Wallet
+
+export function saveData(payload) {
+  return async (dispatch) => {
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const data = await response.json();
+    delete data.USDT;
+    payload.exchangeRates = data;
+    dispatch({
+      type: SAVE_DATA,
+      payload,
+    });
+  };
+}
 
 export function requestAPI() {
   return {
@@ -47,4 +61,5 @@ export function fetchAPI() {
     }
   };
 }
+
 // Coloque aqui suas actions
