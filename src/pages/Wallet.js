@@ -6,6 +6,8 @@ import Currency from '../components/Currency';
 import PaymentMethod from '../components/PaymentMethod';
 import CategoryExpenses from '../components/CategoryExpenses';
 import DescriptionPayment from '../components/DescriptionPayment';
+import HeaderWallet from '../components/HeaderWallet';
+import TableWallet from '../components/TableWallet';
 
 class Wallet extends React.Component {
   constructor() {
@@ -15,13 +17,12 @@ class Wallet extends React.Component {
       value: 0,
       description: '',
       currency: 'USD',
-      method: '',
-      tag: '',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
       exchangeRates: {},
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.sumWallet = this.sumWallet.bind(this);
   }
 
   componentDidMount() {
@@ -29,7 +30,7 @@ class Wallet extends React.Component {
     fetchCurrencies();
   }
 
-  sumWallet() {
+  /* sumWallet() {
     const { currencies } = this.props;
     let sum = 0;
     currencies.forEach((element) => {
@@ -37,7 +38,7 @@ class Wallet extends React.Component {
       += Number(element.value) * Number(element.exchangeRates[element.currency].ask);
     });
     return sum;
-  }
+  } */
 
   handleChange({ target }) {
     const { name } = target;
@@ -48,21 +49,11 @@ class Wallet extends React.Component {
   }
 
   render() {
-    const { userEmail, saveData: save } = this.props;
+    const { saveData: save } = this.props;
     const { value, description, currency, method, tag, exchangeRates } = this.state;
     return (
       <>
-        <header>
-          <div>
-            <span data-testid="email-field">{userEmail}</span>
-          </div>
-          <div>
-            <span data-testid="total-field">{this.sumWallet()}</span>
-          </div>
-          <div>
-            <span data-testid="header-currency-field">BRL</span>
-          </div>
-        </header>
+        <HeaderWallet />
         <form>
           <DescriptionPayment
             value={ value }
@@ -85,6 +76,7 @@ class Wallet extends React.Component {
         >
           Adicionar despesa
         </button>
+        <TableWallet />
       </>
     );
   }
@@ -101,9 +93,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 Wallet.propTypes = {
-  userEmail: propTypes.string.isRequired,
   fetchCurrencies: propTypes.func.isRequired,
-  currencies: propTypes.arrayOf(propTypes.object).isRequired,
   saveData: propTypes.func.isRequired,
 };
 

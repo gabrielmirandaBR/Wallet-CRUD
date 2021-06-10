@@ -17,9 +17,9 @@ class Currency extends Component {
           onChange={ handleChange }
         >
           {
-            curriciesFiltered.map((currency) => (
+            curriciesFiltered.map((currency, index) => (
               <option
-                key={ currency.name }
+                key={ index }
                 value={ currency.code }
               >
                 {currency.code}

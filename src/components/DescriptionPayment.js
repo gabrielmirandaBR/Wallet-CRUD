@@ -12,6 +12,7 @@ class DescriptionPayment extends Component {
             type="number"
             id="expense"
             name="value"
+            min="0"
             value={ value }
             onChange={ handleChange }
           />
@@ -23,6 +24,7 @@ class DescriptionPayment extends Component {
             id="description"
             name="description"
             value={ description }
+            maxLength="25"
             onChange={ handleChange }
           />
         </label>
