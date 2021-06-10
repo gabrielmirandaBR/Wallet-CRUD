@@ -21,23 +21,25 @@ function walletReducer(state = INITIAL_STATE, action) {
       ...state,
       isLoading: true,
     };
+
   case REQUEST_CURRENCIES_SUCCESS:
     return {
       ...state,
       currencies: Object.values(action.data),
       isLoading: false,
     };
+
   case REQUEST_CURRENCIES_ERROR:
     return {
       ...state,
       error: action.error,
     };
+
   case SAVE_DATA:
     countId += 1;
     return {
       ...state,
       expenses: [...state.expenses, { ...action.payload, id: countId }],
-
     };
 
   default:

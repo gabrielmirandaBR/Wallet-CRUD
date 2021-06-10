@@ -39,6 +39,8 @@ const mapStateToProps = (state) => ({
 
 Currency.propTypes = {
   currencies: propTypes.arrayOf(propTypes.object).isRequired,
+  value: propTypes.string.isRequired,
+  handleChange: propTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Currency);

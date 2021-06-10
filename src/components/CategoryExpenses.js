@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 
 class CategoryExpenses extends Component {
   render() {
@@ -27,5 +28,10 @@ class CategoryExpenses extends Component {
     );
   }
 }
+
+CategoryExpenses.propTypes = {
+  value: propTypes.string.isRequired,
+  handleChange: propTypes.func.isRequired,
+};
 
 export default CategoryExpenses;

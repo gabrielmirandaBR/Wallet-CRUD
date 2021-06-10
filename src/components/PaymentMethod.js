@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 
-export default class PaymentMethod extends Component {
+class PaymentMethod extends Component {
   render() {
     const { value, handleChange } = this.props;
     return (
@@ -26,3 +27,10 @@ export default class PaymentMethod extends Component {
     );
   }
 }
+
+PaymentMethod.propTypes = {
+  value: propTypes.string.isRequired,
+  handleChange: propTypes.func.isRequired,
+};
+
+export default PaymentMethod;

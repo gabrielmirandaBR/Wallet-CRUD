@@ -32,16 +32,11 @@ class Wallet extends React.Component {
   sumWallet() {
     const { currencies } = this.props;
     let sum = 0;
-    const result = currencies.forEach((element) => {
+    currencies.forEach((element) => {
       sum
       += Number(element.value) * Number(element.exchangeRates[element.currency].ask);
     });
     return sum;
-
-    /*  const value = currencies.map((item) => Number(item.value));
-    const rates = currencies.map((item, index) => Object.values(item.exchangeRates));
-    console.log(currency);
-    console.log(rates); */
   }
 
   handleChange({ target }) {
@@ -90,9 +85,7 @@ class Wallet extends React.Component {
         >
           Adicionar despesa
         </button>
-
       </>
-
     );
   }
 }
@@ -110,6 +103,8 @@ const mapDispatchToProps = (dispatch) => ({
 Wallet.propTypes = {
   userEmail: propTypes.string.isRequired,
   fetchCurrencies: propTypes.func.isRequired,
+  currencies: propTypes.arrayOf(propTypes.object).isRequired,
+  saveData: propTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
