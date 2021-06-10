@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchAPI, saveData } from '../actions';
+import { fetchAPI, saveData, updateValueTotal } from '../actions';
 import Currency from '../components/Currency';
 import PaymentMethod from '../components/PaymentMethod';
 import CategoryExpenses from '../components/CategoryExpenses';
@@ -49,6 +49,14 @@ class Wallet extends React.Component {
   }
 
   render() {
+    const { currencies, updateValueTotal: updateTotal } = this.props;
+    let sum = 0;
+    currencies.forEach((element) => {
+      sum
+      += Number(element.value) * Number(element.exchangeRates[element.currency].ask);
+    });
+    updateTotal(sum);
+
     const { saveData: save } = this.props;
     const { value, description, currency, method, tag, exchangeRates } = this.state;
     return (
@@ -90,11 +98,14 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchCurrencies: () => dispatch(fetchAPI()),
   saveData: (payload) => dispatch(saveData(payload)),
+  updateValueTotal: (payload) => dispatch(updateValueTotal(payload)),
 });
 
 Wallet.propTypes = {
   fetchCurrencies: propTypes.func.isRequired,
   saveData: propTypes.func.isRequired,
+  updateValueTotal: propTypes.func.isRequired,
+  currencies: propTypes.arrayOf(propTypes.object).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { removeItem } from '../actions';
 
 class TableWallet extends Component {
   constructor() {
@@ -10,7 +11,7 @@ class TableWallet extends Component {
   }
 
   renderTable() {
-    const { currencies } = this.props;
+    const { currencies, removeItem: remove } = this.props;
 
     return currencies.map((item, index) => {
       const { name } = item.exchangeRates[item.currency];
@@ -18,7 +19,6 @@ class TableWallet extends Component {
       const currencyValue = item.exchangeRates[item.currency].ask;
       const currencyValueFiltered = parseFloat(currencyValue).toFixed(2);
       const convertedValue = parseFloat((item.value * currencyValue)).toFixed(2);
-      const codeCurrency = item.exchangeRates[item.currency].code;
 
       return (
         <tr key={ index }>
@@ -30,6 +30,16 @@ class TableWallet extends Component {
           <td>{currencyValueFiltered}</td>
           <td>{convertedValue}</td>
           <td>Real</td>
+          <td>
+            <button
+              data-testid="delete-btn"
+              type="button"
+              onClick={ () => remove(index) }
+            >
+              Deletar
+            </button>
+
+          </td>
         </tr>
       );
     });
@@ -63,8 +73,13 @@ const mapStateToProps = (state) => ({
   currencies: state.wallet.expenses,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  removeItem: (payload) => dispatch(removeItem(payload)),
+});
+
 TableWallet.propTypes = {
   currencies: propTypes.arrayOf(propTypes.object).isRequired,
+  removeItem: propTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(TableWallet);
+export default connect(mapStateToProps, mapDispatchToProps)(TableWallet);

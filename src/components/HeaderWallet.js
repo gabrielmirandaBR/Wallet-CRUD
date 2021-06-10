@@ -3,31 +3,19 @@ import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 class HeaderWallet extends Component {
-  constructor() {
-    super();
-
-    this.sumWallet = this.sumWallet.bind(this);
-  }
-
-  sumWallet() {
-    const { currencies } = this.props;
-    let sum = 0;
-    currencies.forEach((element) => {
-      sum
-      += Number(element.value) * Number(element.exchangeRates[element.currency].ask);
-    });
-    return parseFloat(sum).toFixed(2);
-  }
-
   render() {
-    const { userEmail } = this.props;
+    const { userEmail, valueTotal } = this.props;
     return (
       <header>
         <div>
           <span data-testid="email-field">{userEmail}</span>
         </div>
         <div>
-          <span data-testid="total-field">{`R$ ${this.sumWallet()}`}</span>
+          <span
+            data-testid="total-field"
+          >
+            {`R$ ${parseFloat(valueTotal).toFixed(2)}`}
+          </span>
           {' '}
           <span data-testid="header-currency-field">BRL</span>
         </div>
@@ -35,14 +23,16 @@ class HeaderWallet extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => ({
   userEmail: state.user.email,
   currencies: state.wallet.expenses,
+  valueTotal: state.wallet.sumTotal,
 });
 
 HeaderWallet.propTypes = {
   userEmail: propTypes.string.isRequired,
-  currencies: propTypes.arrayOf(propTypes.object).isRequired,
+  valueTotal: propTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(HeaderWallet);

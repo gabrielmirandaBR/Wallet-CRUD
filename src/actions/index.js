@@ -3,6 +3,9 @@ export const REQUEST_API = 'REQUEST_API';
 export const REQUEST_CURRENCIES_SUCCESS = 'REQUEST_CURRENCIES_SUCCESS';
 export const REQUEST_CURRENCIES_ERROR = 'REQUEST_CURRENCIES_ERROR';
 export const SAVE_DATA = 'SAVE_DATA';
+export const DELETE_ITEM = 'DELETE_ITEM';
+export const UPDATE_VALUE_TOTAL = 'UPDATE_VALUE_TOTAL';
+
 // Action Login
 
 export function getEmail(email) {
@@ -15,6 +18,20 @@ export function getEmail(email) {
 }
 
 // Actions Wallet
+
+export function updateValueTotal(payload) {
+  return {
+    type: UPDATE_VALUE_TOTAL,
+    payload,
+  };
+}
+
+export function removeItem(payload) {
+  return {
+    type: DELETE_ITEM,
+    payload,
+  };
+}
 
 export function saveData(payload) {
   return async (dispatch) => {
@@ -61,5 +78,3 @@ export function fetchAPI() {
     }
   };
 }
-
-// Coloque aqui suas actions

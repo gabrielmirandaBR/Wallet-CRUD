@@ -2,7 +2,8 @@ import {
   REQUEST_API,
   REQUEST_CURRENCIES_SUCCESS,
   REQUEST_CURRENCIES_ERROR,
-  SAVE_DATA,
+  SAVE_DATA, DELETE_ITEM,
+  UPDATE_VALUE_TOTAL,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -10,7 +11,12 @@ const INITIAL_STATE = {
   expenses: [],
   isLoading: false,
   error: null,
+  sumTotal: 0,
 };
+
+function removeItem(itens, id) {
+  return itens.filter((item) => item.id !== id);
+}
 
 let countId = Number('-1');
 
@@ -40,6 +46,18 @@ function walletReducer(state = INITIAL_STATE, action) {
     return {
       ...state,
       expenses: [...state.expenses, { ...action.payload, id: countId }],
+    };
+
+  case UPDATE_VALUE_TOTAL:
+    return {
+      ...state,
+      sumTotal: action.payload,
+    };
+
+  case DELETE_ITEM:
+    return {
+      ...state,
+      expenses: removeItem(state.expenses, action.payload),
     };
 
   default:
