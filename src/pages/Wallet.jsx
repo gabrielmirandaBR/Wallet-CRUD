@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchAPI, saveData, updateValueTotal } from '../actions';
+import { fetchAPI, saveData, updateValueTotal } from '../redux/actions';
 import Currency from '../components/Currency';
 import PaymentMethod from '../components/PaymentMethod';
 import CategoryExpenses from '../components/CategoryExpenses';

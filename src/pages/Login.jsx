@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { getEmail } from '../actions';
+import { Button, Form } from 'react-bootstrap';
+import { getEmail } from '../redux/actions';
+
+import '../styles/Login.css';
 
 class Login extends Component {
   constructor() {
@@ -68,49 +71,50 @@ class Login extends Component {
 
   render() {
     const { email, password, disabled, redirect } = this.state;
-
     if (redirect) {
       return <Redirect to="/carteira" />;
     }
-
     return (
-      <section>
-        <div>
-          <label htmlFor="email">
-            <span>Email: </span>
-            <input
+      <section className="login">
+        <img src="https://img.icons8.com/cotton/64/000000/coin-wallet--v1.png" alt="wallet" />
+        <Form className="login_form">
+          <Form.Group className="mb-3">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
               name="email"
               type="email"
               value={ email }
               onChange={ this.handleChange }
               data-testid="email-input"
-              placeholder="alguem@alguem.com"
+              placeholder="Insira seu email"
               id="email"
             />
-          </label>
-
-          <label htmlFor="password">
-            <span>Senha: </span>
-            <input
+          </Form.Group>
+          <Form.Group style={ { margin: '0' } } className="form_password">
+            <Form.Label>Senha</Form.Label>
+            <Form.Control
               name="password"
               type="password"
               value={ password }
               onChange={ this.handleChange }
               data-testid="password-input"
-              placeholder="******"
+              placeholder="Insira sua senha"
               id="password"
             />
-          </label>
-
-          <button
+          </Form.Group>
+          <Form.Text className="text-muted">
+            A senha deve possuir seis caracteres ou mais.
+          </Form.Text>
+          <Button
+            className="form_button"
+            variant="success"
             type="button"
             disabled={ disabled }
             onClick={ this.addLogin }
           >
             Entrar
-
-          </button>
-        </div>
+          </Button>
+        </Form>
       </section>
     );
   }

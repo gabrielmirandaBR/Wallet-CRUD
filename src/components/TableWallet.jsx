@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { removeItem } from '../actions';
+import { removeItem } from '../redux/actions';
 
 class TableWallet extends Component {
   constructor() {
