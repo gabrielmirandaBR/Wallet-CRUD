@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Wallet-CRUD/static/css/main.623b6138.chunk.css",
+    "main.js": "/Wallet-CRUD/static/js/main.fe0c3a89.chunk.js",
+    "main.js.map": "/Wallet-CRUD/static/js/main.fe0c3a89.chunk.js.map",
+    "runtime-main.js": "/Wallet-CRUD/static/js/runtime-main.2d708148.js",
+    "runtime-main.js.map": "/Wallet-CRUD/static/js/runtime-main.2d708148.js.map",
+    "static/css/2.8d3f7698.chunk.css": "/Wallet-CRUD/static/css/2.8d3f7698.chunk.css",
+    "static/js/2.1de5c34e.chunk.js": "/Wallet-CRUD/static/js/2.1de5c34e.chunk.js",
+    "static/js/2.1de5c34e.chunk.js.map": "/Wallet-CRUD/static/js/2.1de5c34e.chunk.js.map",
+    "index.html": "/Wallet-CRUD/index.html",
+    "precache-manifest.e689a25c33ced8a1622930275fd0d788.js": "/Wallet-CRUD/precache-manifest.e689a25c33ced8a1622930275fd0d788.js",
+    "service-worker.js": "/Wallet-CRUD/service-worker.js",
+    "static/css/2.8d3f7698.chunk.css.map": "/Wallet-CRUD/static/css/2.8d3f7698.chunk.css.map",
+    "static/css/main.623b6138.chunk.css.map": "/Wallet-CRUD/static/css/main.623b6138.chunk.css.map",
+    "static/js/2.1de5c34e.chunk.js.LICENSE.txt": "/Wallet-CRUD/static/js/2.1de5c34e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2d708148.js",
+    "static/css/2.8d3f7698.chunk.css",
+    "static/js/2.1de5c34e.chunk.js",
+    "static/css/main.623b6138.chunk.css",
+    "static/js/main.fe0c3a89.chunk.js"
+  ]
+}
