@@ -34,7 +34,7 @@ class TableWallet extends Component {
             <button
               data-testid="delete-btn"
               type="button"
-              onClick={ () => remove(index) }
+              onClick={ () => remove(item.id) }
             >
               Deletar
             </button>
