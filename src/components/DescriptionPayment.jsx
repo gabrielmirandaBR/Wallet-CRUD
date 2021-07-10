@@ -1,34 +1,44 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import { Form } from 'react-bootstrap';
+
+import '../styles/DescriptionPayment.css';
 
 class DescriptionPayment extends Component {
   render() {
     const { value, description, handleChange } = this.props;
     return (
-      <>
-        <label htmlFor="expense">
-          Valor:
-          <input
-            type="number"
-            id="expense"
-            name="value"
-            min="0"
-            value={ value }
-            onChange={ handleChange }
-          />
-        </label>
-        <label htmlFor="description">
-          Descrição:
-          <input
-            type="text"
-            id="description"
-            name="description"
-            value={ description }
-            maxLength="25"
-            onChange={ handleChange }
-          />
-        </label>
-      </>
+      <section className="description">
+        <Form.Group>
+          <Form.Label htmlFor="expense">
+            Valor
+            <Form.Control
+              type="number"
+              id="expense"
+              name="value"
+              min="0"
+              value={ value }
+              onChange={ handleChange }
+              placeholder="0.00"
+            />
+          </Form.Label>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor="description">
+            Descrição
+            <Form.Control
+              type="text"
+              id="description"
+              name="description"
+              value={ description }
+              maxLength="25"
+              onChange={ handleChange }
+              placeholder="Insira uma descrição"
+            />
+          </Form.Label>
+        </Form.Group>
+      </section>
     );
   }
 }

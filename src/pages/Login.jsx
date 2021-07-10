@@ -79,7 +79,7 @@ class Login extends Component {
         <img src="https://img.icons8.com/cotton/64/000000/coin-wallet--v1.png" alt="wallet" />
         <Form className="login_form">
           <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
+            <Form.Label htmlFor="email">Email</Form.Label>
             <Form.Control
               name="email"
               type="email"
@@ -91,7 +91,7 @@ class Login extends Component {
             />
           </Form.Group>
           <Form.Group style={ { margin: '0' } } className="form_password">
-            <Form.Label>Senha</Form.Label>
+            <Form.Label htmlFor="password">Senha</Form.Label>
             <Form.Control
               name="password"
               type="password"

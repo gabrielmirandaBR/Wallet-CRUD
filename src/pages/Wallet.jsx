@@ -1,6 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Button, Form } from 'react-bootstrap';
 import { fetchAPI, saveData, updateValueTotal } from '../redux/actions';
 import Currency from '../components/Currency';
 import PaymentMethod from '../components/PaymentMethod';
@@ -8,6 +9,8 @@ import CategoryExpenses from '../components/CategoryExpenses';
 import DescriptionPayment from '../components/DescriptionPayment';
 import HeaderWallet from '../components/HeaderWallet';
 import TableWallet from '../components/TableWallet';
+
+import '../styles/Wallet.css';
 
 class Wallet extends React.Component {
   constructor() {
@@ -62,28 +65,32 @@ class Wallet extends React.Component {
     return (
       <>
         <HeaderWallet />
-        <form>
+        <Form className="form">
           <DescriptionPayment
             value={ value }
             description={ description }
             handleChange={ this.handleChange }
           />
-          <Currency value={ currency } handleChange={ this.handleChange } />
-          <PaymentMethod value={ method } handleChange={ this.handleChange } />
-          <CategoryExpenses value={ tag } handleChange={ this.handleChange } />
-        </form>
+          <div className="separator" />
+          <div className="form_inputs">
+            <Currency value={ currency } handleChange={ this.handleChange } />
+            <PaymentMethod value={ method } handleChange={ this.handleChange } />
+            <CategoryExpenses value={ tag } handleChange={ this.handleChange } />
+          </div>
+          <Button
+            type="button"
+            variant="success"
+            onClick={ () => save({ value,
+              description,
+              currency,
+              method,
+              tag,
+              exchangeRates }) }
+          >
+            Adicionar despesa
+          </Button>
+        </Form>
 
-        <button
-          type="button"
-          onClick={ () => save({ value,
-            description,
-            currency,
-            method,
-            tag,
-            exchangeRates }) }
-        >
-          Adicionar despesa
-        </button>
         <TableWallet />
       </>
     );
