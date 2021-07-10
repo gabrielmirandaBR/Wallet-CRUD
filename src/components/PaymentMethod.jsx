@@ -8,7 +8,7 @@ class PaymentMethod extends Component {
     return (
       <Form.Group>
         <Form.Label htmlFor="payment">
-          Método de pagamento
+          Pagamento
           <select
             className="form-control"
             id="payment"

@@ -1,0 +1,8 @@
+.table {
+ margin-top: 15px;
+}
+
+#columns td {
+  text-align: center;
+  vertical-align: middle;
+}

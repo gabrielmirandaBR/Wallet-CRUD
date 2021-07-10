@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Button, Table } from 'react-bootstrap';
 import { removeItem } from '../redux/actions';
+
+import '../styles/TableWallet.css';
 
 class TableWallet extends Component {
   constructor() {
@@ -31,13 +34,14 @@ class TableWallet extends Component {
           <td>{convertedValue}</td>
           <td>Real</td>
           <td>
-            <button
+            <Button
+              variant="danger"
               data-testid="delete-btn"
               type="button"
               onClick={ () => remove(item.id) }
             >
               Deletar
-            </button>
+            </Button>
 
           </td>
         </tr>
@@ -49,24 +53,32 @@ class TableWallet extends Component {
     const { currencies } = this.props;
     if (currencies.length > 0) {
       return (
-        <table>
-          <thead>
-            <tr>
-              <th>Descrição</th>
-              <th>Tag</th>
-              <th>Método de pagamento</th>
-              <th>Valor</th>
-              <th>Moeda</th>
-              <th>Câmbio utilizado</th>
-              <th>Valor convertido</th>
-              <th>Moeda de conversão</th>
-              <th>Editar/Excluir</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.renderTable()}
-          </tbody>
-        </table>
+        <div className="table">
+          <Table
+            striped
+            hover
+            size="sm"
+            variant="success"
+            id="columns"
+          >
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Tag</th>
+                <th>Pagamento</th>
+                <th>Valor</th>
+                <th>Moeda</th>
+                <th>Câmbio</th>
+                <th>Conversão</th>
+                <th>Moeda</th>
+                <th>Excluir</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.renderTable()}
+            </tbody>
+          </Table>
+        </div>
       );
     }
     return '';
