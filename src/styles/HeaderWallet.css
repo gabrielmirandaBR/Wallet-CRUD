@@ -1,0 +1,14 @@
+.header {
+  align-items: center;
+  background: rgba(0, 128, 0, 0.405);
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 30px;
+}
+
+.header_total {
+  font-weight: bold;
+}
