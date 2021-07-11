@@ -1,13 +1,15 @@
 # Project Wallet
+#### Este projeto faz parte da formação Full Stack da <a href="https://www.betrybe.com/">Trybe</a>.
 
 ## Introdução
-Esta aplicação é uma carteira de controle de gastos com conversor de moedas o usuário terá as ooções de:
+Esta aplicação é uma carteira de controle de gastos com conversor de moedas, onde o usuário terá as opções de:
   - Adicionar e remover um gasto;
   - Visualizar uma tabelas com seus gastos;
   - Visualizar o total de gastos convertidos para uma moeda de escolha;
 
 ## Habilidades
 Neste projeto, foi utilizado Redux como gerenciador de estado e a biblioteca React Bootstrap para estilização.
+
 ## Desenvolvimento
 
 ### Tela Login
